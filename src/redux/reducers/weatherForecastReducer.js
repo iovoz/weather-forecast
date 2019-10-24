@@ -4,7 +4,7 @@ export const WEATHER_FORECAST_FIVE_DAYS_DETAILS = 'weatherForecast/fetchWeatherF
 const initialState = {
     city: {},
     listSummary: [],
-    listDetails: []
+    listDetails: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action = {}) {
         case WEATHER_FORECAST_FIVE_DAYS_DETAILS:
             return {
                 ...state,
-                listDetails: action.listDetails
+                listDetails: action.listDetails,
             };
         default:
             return state;

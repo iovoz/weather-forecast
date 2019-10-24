@@ -14,13 +14,13 @@ class WeatherForecastContainer extends Component {
         fetchWeatherForecastFiveDaysDetails: PropTypes.func.isRequired,
         city: PropTypes.object,
         listSummary: PropTypes.array,
-        listDetails: PropTypes.array
+        listDetails: PropTypes.object
     };
 
     static defaultProps = {
         city: {},
         listSummary: [],
-        listDetails: []
+        listDetails: {}
     };
 
     render() {
@@ -29,7 +29,7 @@ class WeatherForecastContainer extends Component {
             fetchWeatherForecastFiveDaysDetails } = this.props;
 
         return (
-            <div className="form-group">
+            <div className="form-group weather-forecast">
                 <WeatherForecastForm
                     ajaxStatus={ajaxStatus}
                     city={city}
@@ -45,11 +45,9 @@ class WeatherForecastContainer extends Component {
 
 const mapStateToProps = state => ({
     ajaxStatus: state.ajaxStatus,
-    locations: state.weatherForecast.locations,
     city: state.weatherForecast.city,
     listSummary: state.weatherForecast.listSummary,
-    listDetails: state.weatherForecast.listDetails,
-    dayDetails: state.weatherForecast.dayDetails
+    listDetails: state.weatherForecast.listDetails
 });
 
 export default connect(mapStateToProps, {

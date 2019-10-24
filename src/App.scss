@@ -8,11 +8,6 @@
 .App-content {
   background-color: $white;
   min-height: 100vh;
-  //display: flex;
-  //flex-direction: column;
-  //align-items: center;
-  //justify-content: center;
-  //font-size: calc(10px + 2vmin);
   font-size: $primaryFontSize;
   color: $black;
 }
@@ -23,79 +18,154 @@
 
 .error {
   color: $error;
-  font-size: 0.9em;
+  font-size: 1em;
   padding: 5px 0;
 }
 
-.search-engine {
-  display: flex;
-  justify-content: center;
-  background: #e96e50;
-  background-image: radial-gradient(#e28d50, #e96e50);
-  margin-top: -20px;
-  padding: 50px 0;
-  color: #fff;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+.weather-forecast {
+   &.form-group {
+     margin-bottom: 2rem;
+   }
 
-  input {
-    height: 45px;
-    max-width: 300px;
-    padding: 12px 24px;
-    border-radius: 45px 0 0 45px;
-    font-size: 18px;
-    box-shadow: none;
-  }
-
-  .error {
+  .search-engine {
+    display: flex;
+    justify-content: center;
+    background: #e96e50;
+    background-image: radial-gradient(#e28d50, #e96e50);
+    margin-top: -20px;
+    padding: 50px 0;
     color: $white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+
+    input {
+      height: 45px;
+      max-width: 300px;
+      padding: 12px 24px;
+      border-radius: 45px 0 0 45px;
+      font-size: 18px;
+      box-shadow: none;
+    }
+
+    .error {
+      color: $white;
+    }
+
+    button {
+      height: 45px;
+      border-radius: 0 45px 45px 0;
+      margin-left: -4px;
+
+      &:focus {
+        border-color: #c1593f;
+      }
+    }
   }
 
-  button {
-    height: 45px;
-    border-radius: 0 45px 45px 0;
-    margin-left: -4px;
+  .data-list-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &:focus {
-      border-color: #c1593f;
+    .weather-forecast-list {
+      &__header {
+        padding: 10px 0;
+      }
+
+      &__body {
+        display: flex;
+
+        @media screen and (max-width: $mobile-v) {
+          flex-direction: column;
+        }
+
+        &__item {
+          border: 1px solid $grey;
+          padding: $padding;
+          text-align: center;
+          cursor: pointer;
+
+          &:last-child {
+            border-right: 1px solid $grey;
+          }
+
+          @media screen and (min-width: $mobile-v) {
+            border-right: none;
+          }
+
+          > div {
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .date-layout {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    @media screen and (max-width: $mobile-v) {
+      -ms-flex-direction: column-reverse;
+      flex-direction: column-reverse;
+    }
+
+    &__today {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      margin-right: 30px;
+      padding-bottom: 30px;
+
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .temperature {
+        font-size: 1.55rem;
+      }
+    }
+
+    &__items {
+      &__item {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid $grey;
+      }
+    }
+
+    &__hourly {
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .item {
+        display: flex;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid $grey;
+
+        .time {
+          margin-right: 60px;
+
+          @media screen and (max-width: $mobile-v) {
+            margin-right: 25px;
+          }
+        }
+      }
     }
   }
 }
 
-.data-list-summary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  .weather-forecast-list {
-    &__header {
-      padding: 10px 0;
-    }
-
-    &__body {
-      display: flex;
-
-      @media screen and (max-width: $mobile-v) {
-        flex-direction: column;
-      }
-
-      &__item {
-        border: 1px solid $grey;
-        padding: $padding;
-        text-align: center;
-        cursor: pointer;
-
-        &:last-child {
-          border-right: 1px solid $grey;
-        }
-
-        @media screen and (min-width: $mobile-v) {
-          border-right: none;
-        }
-
-        >div {
-          margin-bottom: 5px;
-        }
-      }
-    }
-  }
+.language-switch {
+  margin-left: 20px;
 }
