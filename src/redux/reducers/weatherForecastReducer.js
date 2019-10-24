@@ -1,22 +1,24 @@
-export const WEATHER_FORECAST_FIVE_DAYS = 'weatherForecast/fetchWeatherForecastFiveDays';
-export const WEATHER_FORECAST_PER_DAY = 'weatherForecast/fetchWeatherForecastPerDay';
+export const WEATHER_FORECAST_FIVE_DAYS_SUMMARY = 'weatherForecast/fetchWeatherForecastFiveDaysSummary';
+export const WEATHER_FORECAST_FIVE_DAYS_DETAILS = 'weatherForecast/fetchWeatherForecastFiveDaysDetails';
 
 const initialState = {
-    list: [],
-    details: {}
+    city: {},
+    listSummary: [],
+    listDetails: []
 };
 
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
-        case WEATHER_FORECAST_PER_DAY:
+        case WEATHER_FORECAST_FIVE_DAYS_SUMMARY:
             return {
                 ...state,
-                details: action.details
+                city: action.city,
+                listSummary: action.listSummary
             };
-        case WEATHER_FORECAST_FIVE_DAYS:
+        case WEATHER_FORECAST_FIVE_DAYS_DETAILS:
             return {
                 ...state,
-                list: action.list
+                listDetails: action.listDetails
             };
         default:
             return state;

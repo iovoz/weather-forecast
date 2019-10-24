@@ -1,22 +1,20 @@
 @import "sass/variables.scss";
-
-.App {
-  text-align: center;
-}
+@import "sass/components.scss";
 
 .App-logo {
   height: 40vmin;
 }
 
 .App-content {
-  background-color: #282c34;
+  background-color: $white;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: $white;
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  //justify-content: center;
+  //font-size: calc(10px + 2vmin);
+  font-size: $primaryFontSize;
+  color: $black;
 }
 
 .App-link {
@@ -27,4 +25,77 @@
   color: $error;
   font-size: 0.9em;
   padding: 5px 0;
+}
+
+.search-engine {
+  display: flex;
+  justify-content: center;
+  background: #e96e50;
+  background-image: radial-gradient(#e28d50, #e96e50);
+  margin-top: -20px;
+  padding: 50px 0;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+
+  input {
+    height: 45px;
+    max-width: 300px;
+    padding: 12px 24px;
+    border-radius: 45px 0 0 45px;
+    font-size: 18px;
+    box-shadow: none;
+  }
+
+  .error {
+    color: $white;
+  }
+
+  button {
+    height: 45px;
+    border-radius: 0 45px 45px 0;
+    margin-left: -4px;
+
+    &:focus {
+      border-color: #c1593f;
+    }
+  }
+}
+
+.data-list-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .weather-forecast-list {
+    &__header {
+      padding: 10px 0;
+    }
+
+    &__body {
+      display: flex;
+
+      @media screen and (max-width: $mobile-v) {
+        flex-direction: column;
+      }
+
+      &__item {
+        border: 1px solid $grey;
+        padding: $padding;
+        text-align: center;
+        cursor: pointer;
+
+        &:last-child {
+          border-right: 1px solid $grey;
+        }
+
+        @media screen and (min-width: $mobile-v) {
+          border-right: none;
+        }
+
+        >div {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
 }

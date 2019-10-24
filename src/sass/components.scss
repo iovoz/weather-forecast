@@ -1,0 +1,26 @@
+input, button {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+input {
+  &:focus {
+    border-color: $grey !important;
+  }
+}
+
+.btn.btn-orange {
+  color: $white;
+  background-color: $orange;
+  border-color: #c1593f;
+  i {
+    margin-right: 5px;
+  }
+
+  &:hover {
+    color: $white;
+    background-color:#c1593f;
+    border-color:#9e511a
+  }
+}

@@ -1,4 +1,16 @@
 {
+  "common.day-0": "日",
+  "common.day-1": "一",
+  "common.day-2": "二",
+  "common.day-3": "三",
+  "common.day-4": "四",
+  "common.day-5": "五",
+  "common.day-6": "六",
   "validator.input.requiredField": "必填",
-  "weather.forecast.cityName": "你的城市名稱"
+  "weather.forecast.dataNotFound": "沒有相關數據",
+  "weather.forecast.cityName": "你的城市名稱",
+  "weather.forecast.search": "搜索",
+  "weather.forecast.daysAmount": "未來{amount}天的氣象預報",
+  "weather.forecast.wind": "{wind} 米/秒",
+  "weather.forecast.otherCond": "云量：{cloud}%，{hpa} hpa"
 }

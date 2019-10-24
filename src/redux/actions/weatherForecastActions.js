@@ -1,67 +1,74 @@
 import { FETCH_PENDING, FETCH_COMPLETE, SERVER_ERROR } from '../reducers/ajaxStatusReducer';
-import { WEATHER_FORECAST_FIVE_DAYS, WEATHER_FORECAST_PER_DAY } from '../reducers/weatherForecastReducer';
+import {
+    WEATHER_FORECAST_FIVE_DAYS_SUMMARY,
+    WEATHER_FORECAST_FIVE_DAYS_DETAILS
+} from '../reducers/weatherForecastReducer';
+import constants from '../../constants/constants';
 import axios from 'axios';
 
-export function fetchWeatherForecastFiveDays(location) {
+export function fetchWeatherForecastFiveDaysSummary(location) {
     return async dispatch => {
         try {
             dispatch({
                 type: FETCH_PENDING
             });
 
-            const response = await axios({
-                url: 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22',
-                method: 'get'
-            });
+            const current = await axios.get(
+                `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${constants.APPID_FREE}`
+            );
 
-            console.log(response);
+            const response = await axios.get(
+                `https://openweathermap.org/data/2.5/forecast/daily/?appid=${constants.APPID_PUBLIC}&id=${current.data.id}&units=metric`
+            );
+
             dispatch({
-                type: WEATHER_FORECAST_FIVE_DAYS,
-                list: []
+                type: WEATHER_FORECAST_FIVE_DAYS_SUMMARY,
+                city: response.data.city || {},
+                listSummary: response.data.list || []
             });
 
             dispatch({
                 type: FETCH_COMPLETE
             });
-        }
-        catch (e) {
+        } catch (e) {
+            dispatch({
+                type: WEATHER_FORECAST_FIVE_DAYS_SUMMARY,
+                city: { notFound: true },
+                listSummary: []
+            });
             dispatch({
                 type: SERVER_ERROR,
-                serverStatus: e.response.status,
-                serverMessage: e.response.data.message
-            })
+                serverStatus: e.response
+            });
         }
     };
 }
 
-export function fetchWeatherForecastPerDay(location) {
-    return async dispatch => {
+export function fetchWeatherForecastFiveDaysDetails() {
+    return async (dispatch, getState) => {
         try {
             dispatch({
                 type: FETCH_PENDING
             });
 
-            const response = await axios({
-                url: 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22',
-                method: 'get'
-            });
+            const state = getState();
+            const response = await axios.get(
+                `http://api.openweathermap.org/data/2.5/forecast?id=${state.weatherForecast.city.id}&appid=${constants.APPID_FREE}`
+            );
 
-            console.log(response);
             dispatch({
-                type: WEATHER_FORECAST_PER_DAY,
-                details: {}
+                type: WEATHER_FORECAST_FIVE_DAYS_DETAILS,
+                listDetails: response.data.list || []
             });
 
             dispatch({
                 type: FETCH_COMPLETE
             });
-        }
-        catch (e) {
+        } catch (e) {
             dispatch({
                 type: SERVER_ERROR,
-                serverStatus: e.response.status,
-                serverMessage: e.response.data.message
-            })
+                serverStatus: e.response
+            });
         }
     };
 }

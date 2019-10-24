@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchWeatherForecastFiveDays, fetchWeatherForecastPerDay } from '../redux/actions/weatherForecastActions';
+import {
+    fetchWeatherForecastFiveDaysSummary,
+    fetchWeatherForecastFiveDaysDetails
+} from '../redux/actions/weatherForecastActions';
 import WeatherForecastForm from './weatherForecast/WeatherForecastForm';
 
 class WeatherForecastContainer extends Component {
     static propTypes = {
         ajaxStatus: PropTypes.object.isRequired,
-        fetchWeatherForecastFiveDays: PropTypes.func.isRequired,
-        fetchWeatherForecastPerDay: PropTypes.func.isRequired,
-        list: PropTypes.array,
-        details: PropTypes.object
+        fetchWeatherForecastFiveDaysSummary: PropTypes.func.isRequired,
+        fetchWeatherForecastFiveDaysDetails: PropTypes.func.isRequired,
+        city: PropTypes.object,
+        listSummary: PropTypes.array,
+        listDetails: PropTypes.array
     };
 
     static defaultProps = {
-        list: [],
-        details: {}
+        city: {},
+        listSummary: [],
+        listDetails: []
     };
 
     render() {
-        const { ajaxStatus, list, details, fetchWeatherForecastFiveDays, fetchWeatherForecastPerDay } = this.props;
+        const { ajaxStatus, city, listSummary, listDetails,
+            fetchWeatherForecastFiveDaysSummary,
+            fetchWeatherForecastFiveDaysDetails } = this.props;
+
         return (
-            <div className="col-md-12">
+            <div className="form-group">
                 <WeatherForecastForm
                     ajaxStatus={ajaxStatus}
-                    list={list}
-                    details={details}
-                    fetchWeatherForecastFiveDays={fetchWeatherForecastFiveDays}
-                    fetchWeatherForecastPerDay={fetchWeatherForecastPerDay}
+                    city={city}
+                    listSummary={listSummary}
+                    listDetails={listDetails}
+                    searchSummary={fetchWeatherForecastFiveDaysSummary}
+                    searchDetails={fetchWeatherForecastFiveDaysDetails}
                 />
             </div>
         );
@@ -36,11 +45,14 @@ class WeatherForecastContainer extends Component {
 
 const mapStateToProps = state => ({
     ajaxStatus: state.ajaxStatus,
-    list: state.weatherForecast.list,
-    details: state.weatherForecast.details
+    locations: state.weatherForecast.locations,
+    city: state.weatherForecast.city,
+    listSummary: state.weatherForecast.listSummary,
+    listDetails: state.weatherForecast.listDetails,
+    dayDetails: state.weatherForecast.dayDetails
 });
 
 export default connect(mapStateToProps, {
-    fetchWeatherForecastFiveDays,
-    fetchWeatherForecastPerDay
+    fetchWeatherForecastFiveDaysSummary,
+    fetchWeatherForecastFiveDaysDetails
 })(WeatherForecastContainer);

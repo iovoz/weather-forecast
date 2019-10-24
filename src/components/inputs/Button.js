@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 export default class Button extends Component {
     static propTypes = {
-        className: PropTypes.string,
         type: PropTypes.string.isRequired,
-        onClick: PropTypes.func,
         children: PropTypes.node.isRequired,
         disabled: PropTypes.bool,
-        submitting: PropTypes.bool
+        className: PropTypes.string,
+        submitting: PropTypes.bool,
+        onClick: PropTypes.func
     };
 
     static defaultProps = {
         disabled: false,
         submitting: false,
-        className: 'btn orange',
+        className: 'btn btn-orange',
         onClick: () => {}
     };
 

@@ -1,4 +1,16 @@
 {
+  "common.day-0": "Sunday",
+  "common.day-1": "Monday",
+  "common.day-2": "Tuesday",
+  "common.day-3": "Wednesday",
+  "common.day-4": "Thursday",
+  "common.day-5": "Friday",
+  "common.day-6": "Saturday",
   "validator.input.requiredField": "Required",
-  "weather.forecast.cityName": "Your city name"
+  "weather.forecast.dataNotFound": "Data not found.",
+  "weather.forecast.cityName": "Your city name",
+  "weather.forecast.search": "Search",
+  "weather.forecast.daysAmount": "{amount} days weather forecast",
+  "weather.forecast.wind": "{wind} m/s",
+  "weather.forecast.otherCond": "Clouds: {cloud}%, {hpa} hpa"
 }
