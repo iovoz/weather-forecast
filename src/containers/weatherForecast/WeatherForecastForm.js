@@ -39,7 +39,11 @@ class WeatherForecastForm extends Component {
     };
 
     submitHandler = value => {
-        this.props.searchSummary(value.location);
+        this.setState({
+            showOneDayDetails: false
+        }, () => {
+            this.props.searchSummary(value.location);
+        })
     };
 
     render() {
