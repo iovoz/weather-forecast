@@ -14,7 +14,7 @@ export function fetchWeatherForecastFiveDaysSummary(location) {
             });
 
             const state = getState();
-            let url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${constants.APPID_FREE}&units=metric`;
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${constants.APPID_FREE}&units=metric`;
             if (state.language.lang === 'tc') url += '&lang=zh_tw';
             const current = await axios.get(url);
 
@@ -57,7 +57,7 @@ export function fetchWeatherForecastFiveDaysDetails() {
             });
 
             const state = getState();
-            let url = `http://api.openweathermap.org/data/2.5/forecast?id=${state.weatherForecast.city.id}&appid=${constants.APPID_FREE}&units=metric`;
+            let url = `https://api.openweathermap.org/data/2.5/forecast?id=${state.weatherForecast.city.id}&appid=${constants.APPID_FREE}&units=metric`;
             if (state.language.lang === 'tc') url += '&lang=zh_tw';
             const response = await axios.get(url);
 
